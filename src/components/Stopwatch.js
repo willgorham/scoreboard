@@ -18,6 +18,10 @@ class Stopwatch extends Component {
     this.tickInterval = setInterval(this.tick.bind(this), 1000);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.tickInterval);
+  }
+
   tick() {
     if (!this.state.isRunning) {
       return;
