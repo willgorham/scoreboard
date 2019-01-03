@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Player from './Player';
+import AddPlayerForm from './AddPlayerForm';
 
 class App extends Component {
   state = {
@@ -50,12 +51,28 @@ class App extends Component {
     });
   }
 
+  handleAddPlayer = (name) => {
+    this.setState( prevState => {
+      const id = Math.max(...prevState.players.map(p => p.id)) + 1;
+      return {
+        players: [
+          ...prevState.players,
+          {
+            name,
+            score: 0,
+            id,
+          }
+        ],
+      };
+    });
+  }
+
   render() {
     return (
       <div className="scoreboard">
         <Header
           title="Scoreboard"
-          totalPlayers={this.state.players.length}
+          players={ this.state.players }
         />
 
         {/* Players list */}
@@ -69,6 +86,8 @@ class App extends Component {
             updateScore={ this.handleUpdateScore }
           />
         )}
+
+        <AddPlayerForm addPlayer={this.handleAddPlayer} />
       </div>
     );
   }
