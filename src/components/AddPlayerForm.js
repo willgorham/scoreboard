@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class AddPlayerForm extends Component {
 
+
   state = {
     value: '',
   };
@@ -13,9 +14,11 @@ class AddPlayerForm extends Component {
   }
 
   handleSubmit = (e) => {
+    { addPlayer } = this.props;
+
     e.preventDefault();
     this.setState({ value: '' });
-    this.props.addPlayer(this.state.value);
+    addPlayer(this.state.value);
   }
 
   render() {
