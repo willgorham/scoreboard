@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Consumer } from './Context';
 import Counter from './Counter';
 import Crown from './Crown';
 
@@ -10,23 +11,23 @@ class Player extends PureComponent {
       name,
       id,
       score,
-      updateScore,
-      removePlayer,
       isLeader,
     } = this.props;
 
     return (
       <div className="player">
-        <span className="player-name">
-          <button className="remove-player" onClick={() => removePlayer(id)}>✖</button>
-          <Crown isLeader={isLeader}/>
-          { name }
-        </span>
-
+        <Consumer>
+          {context => (
+            <span className="player-name">
+              <button className="remove-player" onClick={() => context.actions.removePlayer(id)}>✖</button>
+              <Crown isLeader={isLeader}/>
+              { name }
+            </span>
+          )}
+        </Consumer>
         <Counter
           score={ score }
           playerId={ id }
-          updateScore={ updateScore }
         />
       </div>
     );
@@ -37,8 +38,6 @@ Player.propTypes = {
   name: PropTypes.string,
   id: PropTypes.number,
   score: PropTypes.number,
-  updateScore: PropTypes.func,
-  removePlayer: PropTypes.func,
   isLeader: PropTypes.bool,
 };
 
