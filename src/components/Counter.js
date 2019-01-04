@@ -2,18 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Consumer } from './Context';
 
-const Counter = ({
-    score,
-    playerId,
-  }) => {
+const Counter = ({ playerId }) => {
 
   return (
     <Consumer>
-      {context => (
+      { ({ players, actions }) => (
       <div className="counter">
-        <button className="counter-action decrement" onClick={ () => context.actions.updateScore(playerId, -1) }> - </button>
-        <span className="counter-score">{ score }</span>
-        <button className="counter-action increment" onClick={ () => context.actions.updateScore(playerId, 1) }> + </button>
+        <button className="counter-action decrement" onClick={ () => actions.updateScore(playerId, -1) }> - </button>
+        <span className="counter-score">{ players.find(p => p.id === playerId).score }</span>
+        <button className="counter-action increment" onClick={ () => actions.updateScore(playerId, 1) }> + </button>
       </div>
       )}
     </Consumer>
@@ -21,7 +18,6 @@ const Counter = ({
 }
 
 Counter.propTypes = {
-  score: PropTypes.number,
   playerId: PropTypes.number,
 };
 

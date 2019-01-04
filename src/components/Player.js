@@ -8,36 +8,29 @@ class Player extends PureComponent {
 
   render() {
     const {
-      name,
       id,
-      score,
       isLeader,
     } = this.props;
 
     return (
       <div className="player">
         <Consumer>
-          {context => (
+          { ({ players, actions }) => (
             <span className="player-name">
-              <button className="remove-player" onClick={() => context.actions.removePlayer(id)}>✖</button>
+              <button className="remove-player" onClick={() => actions.removePlayer(id)}>✖</button>
               <Crown isLeader={isLeader}/>
-              { name }
+              { players.find(p => p.id === id).name }
             </span>
           )}
         </Consumer>
-        <Counter
-          score={ score }
-          playerId={ id }
-        />
+        <Counter playerId={ id } />
       </div>
     );
   }
 }
 
 Player.propTypes = {
-  name: PropTypes.string,
   id: PropTypes.number,
-  score: PropTypes.number,
   isLeader: PropTypes.bool,
 };
 

@@ -5,14 +5,14 @@ import Player from './Player';
 const PlayerList = () => {
   return (
     <Consumer>
-      {context => {
-        const highScore = context.actions.getHighScore();
+      { ({ players, actions }) => {
+        const highScore = actions.getHighScore();
 
         return (
           <Fragment>
-            {context.players.map( player =>
+            {players.map( player =>
               <Player
-                {...player}
+                id={player.id}
                 key={ player.id.toString() }
                 isLeader={ highScore === player.score }
               />
