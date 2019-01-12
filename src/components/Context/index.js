@@ -7,12 +7,12 @@ export class Provider extends Component {
   state = {
     players: [
       {
-        name: "Guil",
+        name: "Will",
         id: 1,
         score: 0,
       },
       {
-        name: "Treasure",
+        name: "Alex",
         id: 2,
         score: 0,
       },
