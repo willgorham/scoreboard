@@ -97,7 +97,7 @@ svg {
 .scoreboard {
   background: #fff;
   width: 700px;
-  margin: 70px auto;
+  margin: 70px auto 20px;
   box-shadow: 0 2px 0 rgb(133, 104, 250);
   border-radius: 6px;
   overflow: hidden;
@@ -238,3 +238,11 @@ svg {
     font-size: 2em;
     line-height: 2em;
   }
+
+.github-link {
+  display: block;
+  font-size: .875rem;
+  margin-bottom: 70px;
+  text-align: center;
+  text-transform: none;
+}
